@@ -8,31 +8,102 @@
   </head>
 <body>
 
-  <input type="checkbox" id="checkbox-all">
-  <br>
-  
-  <input type="checkbox" id="checkbox-5" name="checkboxTable">
-  <input type="checkbox" id="checkbox-15" name="checkboxTable">
-  <input type="checkbox" id="checkbox-25" name="checkboxTable">
-  <input type="checkbox" id="checkbox-35" name="checkboxTable">
-  <input type="checkbox" id="checkbox-45" name="checkboxTable">  
+  <p>    <input type="checkbox" id="check_by_name">checkbox_by_name
+                        <br>
+                        <span class="badge badge-warning"> <input type="checkbox" id="check_by_type">checkbox_by_type</span>
+
+                        <br>
+                        <input type="checkbox" id="check_by_id">checkbox_by_id
+                        <br>
+                        <input type="checkbox" id="check_by_class">checkbox_by_class
+                        <br>
+                        <input type="checkbox" id="check_by_parent_descendant">check_by_parent_descendant
+                        <br>
+                        <span class="badge badge-warning"><input type="checkbox" id="check_by_check_the_checked_value">check_by_check_the_checked_value</span>
+                        <br>
+                        <span class="badge badge-warning"><input type="checkbox" id="check_by_slice_selection">check_by_slice_selection</span> if your elements have static position
+                    <table>
+                        <tr>
+                            <td><input type="checkbox" id="checkbox-5" name="checkboxTable" class="checkbox"></td>
+                            <td><input type="checkbox" id="checkbox-15" name="checkboxTable" class="checkbox"></td>
+                            <td><input type="checkbox" id="checkbox-25" name="checkboxTable" class="checkbox"></td>
+                            <td><input type="checkbox" id="checkbox-35" name="checkboxTable" class="checkbox"></td>
+                            <td><input type="checkbox" id="checkbox-45" name="checkboxTable" class="checkbox"></td>
+                        </tr>
+                    </table>
+                    </p>
   <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
   
   <script>
         $('document').ready(function(){
+       //Code that can select all checkbox at once
+        $("#check_by_name").click(function(){
+         $(this).prop("checked") ? $('[name="checkboxTable"]').prop("checked", true) : $('[name="checkboxTable"]').prop("checked", false);
+        });
+//prop() Get the value of a property for the first element in the set of matched elements or set one or more properties for every matched element.
+
+        //Code that can select all checkbox at once
+        $("#check_by_class").click(function(){
+
+            if($(this).prop("checked")){
+                $(".checkbox").prop("checked", true);
+            }else{
+                $(".checkbox").prop("checked", false);
+            }
+        });
 
 
         //Code that can select all checkbox at once
-        $("#checkbox-all").click(function(){
+        $("#check_by_id").click(function(){
 
-            if($("#checkbox-all").prop("checked")){
-                $('[name="checkboxTable"]').prop("checked", false);
-                $('[name="checkboxTable"]').click();
+            if($(this).prop("checked")){
+                $('[id^="checkbox"]').prop("checked", true);
             }else{
-                $('[name="checkboxTable"]').prop("checked", true);
-                $('[name="checkboxTable"]').click();
+                $('[id^="checkbox"]').prop("checked", false);
             }
-        })
+        });
+
+        //Code that can select all checkbox at once
+        $("#check_by_type").click(function(){
+
+            if($(this).prop("checked")){
+                $('[type="checkbox"]').prop("checked", true);
+            }else{
+                $('[type="checkbox"]').prop("checked", false);
+            }
+        });
+
+        //Code that can select all checkbox at once
+        $("#check_by_parent_descendant").click(function(){
+
+            if($(this).prop("checked")){
+                $('td :checkbox').prop("checked", true);
+            }else{
+                $('td :checkbox').prop("checked", false);
+            }
+        });
+
+
+        //Code that can select all checkbox at once
+        $("#check_by_check_the_checked_value").click(function(){
+
+            if($(this).prop("checked")){
+                $(":not(:checked)").prop("checked", true);
+            }else{
+                $(':checked').prop("checked", false);
+            }
+        });
+
+
+        //Code that can select all checkbox at once
+        $("#check_by_slice_selection").click(function(){
+            console.log('check_by_check_the_checked_value');
+            if($(this).prop("checked")){
+                $('td').slice(0).prop("checked", true);
+            }else{
+                $('td').slice(0).prop("checked", false);
+            }
+        });
     });
   </script>
 </body>
